@@ -1,4 +1,8 @@
-# Life Ledger backend
+Here's the updated README with the addition of setting up environment variables before starting the project:
+
+---
+
+# Life Ledger Backend
 
 Welcome to the Life Ledger backend! Follow the steps below to get started.
 
@@ -46,7 +50,18 @@ Install the necessary packages for the project:
 npm install
 ```
 
-### Step 4: Start the Project
+### Step 4: Set Up Environment Variables
+
+Create a `.env` file in the root of your project and add the following variables:
+
+```plaintext
+ENV=development
+DATABASE_URL=mongodb://localhost:27017/your-database-name
+```
+
+Replace `your-database-name` with the name of your MongoDB database.
+
+### Step 5: Start the Project
 
 Start the development server:
 
@@ -55,7 +70,3 @@ npm run dev
 ```
 
 That's it! Your Life Ledger backend should now be up and running.
-
----
-
-This version is structured to guide the user step-by-step through the setup process, making it easier to follow.

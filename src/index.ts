@@ -1,15 +1,17 @@
-import express, { urlencoded, json } from 'express';
+import express, { Express } from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import 'module-alias/register';
 
-const port = process.env.PORT || 8000;
-const app = express();
+dotenv.config();
 
-app.use(urlencoded({ extended: true }));
-app.use(json());
+const app: Express = express();
 
-app.get('/', (req, res) => {
-  res.status(200).json({ msg: 'Server is up' });
-});
+const port = process.env.PORT || 3000;
+const DB = process.env.DATABASE || '';
 
-app.listen(port, () => {
-  console.log(`Server is listening at port ${port}`);
-});
+mongoose.connect(DB);
+
+app.use(express.json());
+
+app.listen(port, () => console.log(`⚡️[server]: Server is running at https://localhost:${port}`));
