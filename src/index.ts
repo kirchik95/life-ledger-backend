@@ -1,7 +1,12 @@
 import express, { Express } from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import 'module-alias/register';
+import morgan from 'morgan';
+
+import auth from '@middlewares/auth';
+
+import authRoutes from '@routes/authRoutes';
+import userRoutes from '@routes/userRoutes';
 
 dotenv.config();
 
@@ -10,8 +15,15 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 const DB = process.env.DATABASE || '';
 
-mongoose.connect(DB);
+mongoose
+  .connect(DB)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.log(err));
 
 app.use(express.json());
+app.use(morgan('dev'));
 
-app.listen(port, () => console.log(`⚡️[server]: Server is running at https://localhost:${port}`));
+app.use('/api/auth', authRoutes);
+app.use('/api/users', auth, userRoutes);
+
+app.listen(port, () => console.log(`⚡️[server]: Server is running at http://localhost:${port}`));

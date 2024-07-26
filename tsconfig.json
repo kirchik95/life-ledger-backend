@@ -1,18 +1,25 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist",
+    "rootDir": "./src",
     "target": "es2020",
-    "module": "commonjs",
-    "paths": {
-      "@controllers/*": ["src/controllers/*"],
-      "@models/*": ["src/models/*"],
-      "@routes/*": ["src/routes/*"]
-    },
+    "module": "CommonJS",
+    "moduleDetection": true,
+    "moduleResoulution": "node",
+    "resolveJsonModule": true,
+    "allowJs": true,
     "esModuleInterop": true,
+    "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": false,
-    "outDir": "./dist",
-    "baseUrl": "./"
+    "paths": {
+      "@models/*": ["src/models/*"],
+      "@middlewares/*": ["src/middlewares/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@routes/*": ["src/routes/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist/**/*"]
