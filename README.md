@@ -58,6 +58,7 @@ Create a `.env` file in the root of your project and add the following variables
 NODE_ENV=development
 JWT_SECRET=your_jwt_secret_key
 DATABASE_URL=mongodb://localhost:27017/your-database-name
+PORT=3000
 ```
 
 Replace `your-database-name` with the name of your MongoDB database.

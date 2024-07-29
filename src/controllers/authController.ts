@@ -27,7 +27,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     await user.save();
 
     const payload = { user: { id: user._id } };
-    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(payload, JWT_SECRET);
 
     res.status(201).json({ user, token });
   } catch (error) {
@@ -56,7 +56,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     const payload = { user: { id: user.id } };
     const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
 
-    res.json({ token });
+    res.json({ user, token });
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
   }
