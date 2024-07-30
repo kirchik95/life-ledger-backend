@@ -7,7 +7,7 @@ dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET || '';
 
 interface AuthRequest extends Request {
-  user?: string | jwt.JwtPayload;
+  user?: { id: string | jwt.JwtPayload };
 }
 
 const auth = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
@@ -20,9 +20,9 @@ const auth = async (req: AuthRequest, res: Response, next: NextFunction): Promis
   }
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET) as { user: string };
+    const decoded = jwt.verify(token, JWT_SECRET) as { user: { id: string } };
 
-    req.user = decoded.user;
+    req.user = { id: decoded.user.id };
 
     next();
   } catch (error) {

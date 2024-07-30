@@ -20,7 +20,7 @@ export const updateProfile = async (req: Request, res: Response): Promise<void> 
   try {
     const { name, email, age } = req.body;
 
-    const user: UserDocument | null = await User.findById(req.user?.id);
+    const user = req.currentUser;
 
     if (user) {
       if (name) user.name = name;
