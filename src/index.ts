@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import auth from '@middlewares/auth';
 
 import authRoutes from '@routes/authRoutes';
+import profileRoutes from '@routes/profileRoutes';
 import userRoutes from '@routes/userRoutes';
 
 dotenv.config();
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 app.use('/api/auth', authRoutes);
+app.use('/api/profile', auth, profileRoutes);
 app.use('/api/users', auth, userRoutes);
 
 app.listen(port, () => console.log(`⚡️[server]: Server is running at http://localhost:${port}`));

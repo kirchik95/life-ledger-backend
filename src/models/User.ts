@@ -5,6 +5,11 @@ export interface UserDocument extends Document {
   email: string;
   age: number;
   password: string;
+  firstName: string;
+  lastName: string;
+  middleName: string;
+  createdAt: Date;
+  birthday: Date;
 }
 
 const UserSchema: Schema = new Schema({
@@ -12,6 +17,11 @@ const UserSchema: Schema = new Schema({
   email: { type: String, required: true },
   age: { type: Number, required: true },
   password: { type: String, required: true },
+  firstName: { type: String, default: '' },
+  lastName: { type: String, default: '' },
+  middleName: { type: String, default: '' },
+  createdAt: { type: Date, default: Date.now },
+  birthday: { type: Date, default: '' },
 });
 
 UserSchema.set('toJSON', {

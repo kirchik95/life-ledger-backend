@@ -11,7 +11,6 @@ interface AuthRequest extends Request {
 }
 
 const auth = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
-  console.log('req.header', req.header('Authorization'));
   const token = req.header('Authorization')?.replace('Bearer ', '');
 
   if (!token) {
@@ -21,8 +20,10 @@ const auth = async (req: AuthRequest, res: Response, next: NextFunction): Promis
   }
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    req.user = decoded;
+    const decoded = jwt.verify(token, JWT_SECRET) as { user: string };
+
+    req.user = decoded.user;
+
     next();
   } catch (error) {
     res.status(401).json({ message: 'Token is not valid' });
